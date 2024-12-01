@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Adzaan - Jadwal Shalat</title>
+    <link rel="stylesheet" href="./style.css">
+  </head>
+  <body>
+    <div id="wrap">
+      <div class="container">
+        <h1>Waktu Shalat</h1>
+
+        <div id="time">
+          <div class="clock pointer">
+            <span class="local">00:00:00</span>
+            <span class="zone"></span>
+          </div>
+
+          <select class="timezone no_items">
+            <option value="7">WIB (UTC+7)</option>
+            <option value="8">WITA (UTC+8)</option>
+            <option value="9">WIT (UTC+9)</option>
+          </select>
+        </div>
+
+        <div class="location">
+          <div class="name pointer" title="Klik untuk ganti lokasi">-</div>
+          <select class="city no_items"></select>
+        </div>
+
+        <ul class="pray">
+          <li>
+            <div class="name">Subuh</div>
+            <div class="time">-</div>
+          </li>
+          <li>
+            <div class="name">Zhuhur</div>
+            <div class="time">-</div>
+          </li>
+          <li>
+            <div class="name">Ashar</div>
+            <div class="time">-</div>
+          </li>
+          <li>
+            <div class="name">Maghrib</div>
+            <div class="time">-</div>
+          </li>
+          <li>
+            <div class="name">Isya'</div>
+            <div class="time">-</div>
+          </li>
+        </ul>
+
+        <div class="date">
+          <span class="gregorian">-</span>
+          <span class="hijri"></span>
+        </div>
+
+      </div>
+    </div>
+    <script type="text/javascript" src="./main.js"></script>
+  </body>
+</html>
