@@ -690,9 +690,7 @@ function changeZone(e) {
     updateTimeTable();
     updateClock();
   }
-
-  t_zone.classList.add('no_items');
-  t_el.querySelector('.clock').classList.remove('no_items');
+  this.blur();
 }
 
 function changeCity(e) {
@@ -701,10 +699,8 @@ function changeCity(e) {
   if (e.type == 'change') updateTimeTable();
 
   const selectedOption = this.options[this.selectedIndex].text;
-  l_city.classList.add('no_items');
-
   l_name.innerHTML = selectedOption.replace(/^\d+\.\s/, '');
-  l_name.classList.remove('no_items');
+  this.blur();
 }
 
 
@@ -740,9 +736,7 @@ t_zone.value = loc_tz;
 l_city.innerHTML = buildSelectOption(loc_id, loc_data);
 l_name.innerHTML = l_city.querySelector('option:checked').textContent.replace(/^\d+\.\s/, '');
 
-t_el.querySelector('.clock').addEventListener('click', function(e) {
-  this.classList.add('no_items');
-  t_zone.classList.remove('no_items');
+t_el.querySelector('.clock').addEventListener('click', function() {
   t_zone.focus();
 });
 
@@ -750,11 +744,7 @@ t_zone.addEventListener('change', changeZone);
 t_zone.addEventListener('focusout', changeZone);
 
 l_el.addEventListener('click', function(e) {
-  if (e.target.classList.contains('name')) {
-    e.target.classList.add('no_items');
-    l_city.classList.remove('no_items');
-    l_city.focus();
-  }
+  if (e.target.classList.contains('name')) l_city.focus();
 });
 
 l_city.addEventListener('change', changeCity);

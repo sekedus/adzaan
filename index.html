@@ -9,24 +9,28 @@
   <body>
     <div id="wrap">
       <div class="container">
-        <h1>Waktu Shalat</h1>
+        <h1 class="title">Waktu Shalat</h1>
 
-        <div id="time">
-          <div class="clock pointer">
-            <span class="local">00:00:00</span>
-            <span class="zone"></span>
+        <div id="time" class="select_click">
+          <div class="box">
+            <select class="timezone">
+              <option value="7">WIB (UTC+7)</option>
+              <option value="8">WITA (UTC+8)</option>
+              <option value="9">WIT (UTC+9)</option>
+            </select>
+  
+            <div class="clock pointer selected">
+              <span class="local">00:00:00</span>
+              <span class="zone"></span>
+            </div>
           </div>
-
-          <select class="timezone no_items">
-            <option value="7">WIB (UTC+7)</option>
-            <option value="8">WITA (UTC+8)</option>
-            <option value="9">WIT (UTC+9)</option>
-          </select>
         </div>
 
-        <div class="location">
-          <div class="name pointer" title="Klik untuk ganti lokasi">-</div>
-          <select class="city no_items"></select>
+        <div class="location select_click">
+          <div class="box">
+            <select class="city"></select>
+            <div class="name pointer selected" title="Klik untuk ganti lokasi">-</div>
+          </div>
         </div>
 
         <ul class="pray">
