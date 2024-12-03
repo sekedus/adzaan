@@ -13,7 +13,11 @@ This project combines reliable sources and algorithms to deliver Islamic prayer 
 
 The API supports the following query parameters:
 
-- **`tz`**: Specifies the timezone offset in hours from UTC.  
+- **`tz`**: Specifies the [Indonesia timezone](https://en.wikipedia.org/wiki/Time_in_Indonesia) offset in hours from UTC.  
+  Available values are:  
+  - `7` = WIB (Waktu Indonesia Barat), UTC+7  
+  - `8` = WITA (Waktu Indonesia Tengah), UTC+8  
+  - `9` = WIT (Waktu Indonesia Timur), UTC+9  
 - **`loc`**: Specifies the location ID. Location IDs correspond to predefined regions or cities.  
 
 ### Example
@@ -22,7 +26,7 @@ The API supports the following query parameters:
 https://sekedus.github.io/adzaan/?tz=7&loc=83
 ```
 
-This example retrieves prayer times for Jakarta (location ID `83`) in timezone `UTC+7` [WIB (Waktu Indonesia Barat)](https://en.wikipedia.org/wiki/Time_in_Indonesia).
+This example retrieves prayer times for Jakarta (location ID `83`) in timezone `UTC+7` WIB.
 
 ## Data Sources
 

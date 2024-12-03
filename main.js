@@ -661,7 +661,7 @@ function updateClock() {
   t_el.dataset.timezone = loc_tz;
 
   const timezoneLabel = loc_tz < 0 ? loc_tz : '+' + loc_tz;
-  t_el.setAttribute('title', 'Zona Waktu: GMT' + timezoneLabel + ' (klik untuk mengganti)');
+  t_el.setAttribute('title', 'Zona Waktu: ' + time_ID[loc_tz] + ' GMT' + timezoneLabel + ' (klik untuk mengganti)');
   t_el.querySelector('.clock .zone').innerHTML = time_ID[loc_tz];
 
   clearTimeout(timer);
@@ -681,26 +681,6 @@ function updateDate() {
   } else {
     document.querySelector('.date .hijri').innerHTML = hijriDate.date + ' ' + hijriMonth[hijriDate.month] + ' ' + hijriDate.year + ' H';
   }
-}
-
-function changeZone(e) {
-  loc_tz = e.target.value;
-  localStorage.setItem('loc-tz', loc_tz);
-  if (e.type == 'change') {
-    updateTimeTable();
-    updateClock();
-  }
-  this.blur();
-}
-
-function changeCity(e) {
-  loc_id = e.target.value;
-  localStorage.setItem('loc-id', loc_id);
-  if (e.type == 'change') updateTimeTable();
-
-  const selectedOption = this.options[this.selectedIndex].text;
-  l_name.innerHTML = selectedOption.replace(/^\d+\.\s/, '');
-  this.blur();
 }
 
 
@@ -740,12 +720,28 @@ t_el.querySelector('.clock').addEventListener('click', function() {
   t_zone.focus();
 });
 
-t_zone.addEventListener('change', changeZone);
-t_zone.addEventListener('focusout', changeZone);
+t_zone.addEventListener('change', function(e) {
+  loc_tz = e.target.value;
+  localStorage.setItem('loc-tz', loc_tz);
+  if (e.type == 'change') {
+    updateTimeTable();
+    updateClock();
+  }
+  this.blur();
+});
 
 l_el.addEventListener('click', function(e) {
   if (e.target.classList.contains('name')) l_city.focus();
 });
 
-l_city.addEventListener('change', changeCity);
-l_city.addEventListener('focusout', changeCity);
+l_city.addEventListener('change', function(e) {
+  loc_id = e.target.value;
+  localStorage.setItem('loc-id', loc_id);
+  if (e.type == 'change') {
+    updateTimeTable();
+    const selected = this.options[this.selectedIndex].text;
+    l_name.innerHTML = selected.replace(/^\d+\.\s/, '');
+  }
+
+  this.blur();
+});
