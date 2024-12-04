@@ -48,6 +48,7 @@ select {
 .select_click select {
   opacity: 0;
   width: 100%;
+  height: 100%;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -81,12 +82,14 @@ select {
   background-image: linear-gradient(to right, transparent, rgba(255, 255, 255, .2), transparent);
 }
 
-#time {
-  margin: 15px 0 0;
+#select {
+  margin: 20px 0 0;
+  display: table;
+  width: 100%;
 }
 
-#time .timezone {
-  margin: .6em 0;
+#time {
+  display: inline-block;
 }
 
 #time .local {
@@ -129,7 +132,9 @@ select {
 
 .location {
   font-size: 1.6em;
-  margin: 15px 0 0;
+  margin-left: 50px;
+  display: inline-block;
+  vertical-align: super;
 }
 
 .location .name {
@@ -145,7 +150,7 @@ select {
 
 .pray {
   font-size: 1.5em;
-  margin: 1em 0;
+  margin: 1em 0 1.5em;
   list-style: none;
   overflow: hidden;
 }
@@ -165,8 +170,8 @@ select {
 
 .date .hijri:before {
   content: '';
-  margin-left: 5px;
-  padding-left: 10px;
+  margin-left: 6px;
+  padding-left: 12px;
   border: 0 dotted rgba(255, 255, 255, .5);
   border-left-width: 1px;
 }
@@ -183,7 +188,32 @@ select {
   .title {
     padding: .8em 0;
     background: rgba(255, 255, 255, .2);
-    border-bottom: 2px solid rgba(255, 255, 255, .3);
+    font-weight: 500;
+  }
+
+  .title:before, .title:after {
+    content: '';
+    background-color: rgba(255, 255, 255, .5);
+    display: inline-block;
+    height: 2px;
+    width: 50%;
+    position: relative;
+    vertical-align: middle;
+  }
+
+  .title:before {
+    right: .8em;
+    margin-left: -50%;
+  }
+
+  .title:after {
+    left: .8em;
+    margin-right: -50%;
+  }
+
+  #time, .location {
+    display: block;
+    margin: 20px 0 0;
   }
 
   #time .zone {
@@ -223,7 +253,7 @@ select {
   }
 
   .date {
-    padding: 1em 1em 2em;
+    padding: 1em 1em 1.5em;
     background: rgba(0, 0, 0, .3);
   }
 

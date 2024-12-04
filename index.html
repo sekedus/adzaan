@@ -11,26 +11,28 @@
       <div class="container">
         <h1 class="title">Waktu Shalat</h1>
 
-        <div id="time" class="select_click">
-          <div class="box">
-            <select class="timezone pointer">
-              <option value="7">WIB (UTC+7)</option>
-              <option value="8">WITA (UTC+8)</option>
-              <option value="9">WIT (UTC+9)</option>
-            </select>
-  
-            <div class="clock selected">
-              <span class="local">00:00:00</span>
-              <span class="zone"></span>
-              <span class="arrow"></span>
+        <div id="select">
+          <div id="time" class="select_click">
+            <div class="box">
+              <select class="timezone pointer">
+                <option value="7">WIB (UTC+7)</option>
+                <option value="8">WITA (UTC+8)</option>
+                <option value="9">WIT (UTC+9)</option>
+              </select>
+
+              <div class="clock selected">
+                <span class="local">00:00:00</span>
+                <span class="zone"></span>
+                <span class="arrow"></span>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="location select_click">
-          <div class="box">
-            <select class="city pointer"></select>
-            <div class="name selected" title="Klik untuk ganti lokasi">-</div>
+          <div class="location select_click" title="Klik untuk ganti lokasi">
+            <div class="box">
+              <select class="city pointer"></select>
+              <div class="name selected">-</div>
+            </div>
           </div>
         </div>
 
