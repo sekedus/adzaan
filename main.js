@@ -492,7 +492,7 @@ function gregorianToHijri(date, data, method) {
       const { start, dataByMonth } = hijriData[year];
       const startOfYear = new Date(start);
       startOfYear.setHours(0, 0, 0, 0); // normaliz to midnight in local time
-      
+
       if (gregorianDate >= startOfYear) {
         // Calculate the number of days between the input date and the Hijri year's start date
         let dayOffset = Math.floor((gregorianDate - startOfYear) / (1000 * 60 * 60 * 24));

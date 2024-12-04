@@ -7,7 +7,6 @@
 }
 
 body {
-  font-size: 65%;
   font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
   background: #005AA0 url("./images/bg.png") repeat;
 }
@@ -61,9 +60,15 @@ select {
 
 /* main */
 #wrap {
-  max-width: 500px;
-  margin: 0 auto;
   text-align: center;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  max-width: 800px;
+  max-height: 100vh;
+  overflow-x: auto;
 }
 
 .container {
@@ -150,10 +155,6 @@ select {
   float: left;
 }
 
-.pray .name, .pray .time {
-  line-height: 18px;
-}
-
 .date {
   font-size: 1.3em;
   background-image: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, .3) 10%, rgba(0, 0, 0, .3) 90%, transparent 100%);
@@ -170,7 +171,7 @@ select {
   border-left-width: 1px;
 }
 
-@media all and (max-width: 375px) {
+@media all and (max-width: 500px) {
   body {
     font-size: 14px;
   }
@@ -183,6 +184,10 @@ select {
     padding: .8em 0;
     background: rgba(255, 255, 255, .2);
     border-bottom: 2px solid rgba(255, 255, 255, .3);
+  }
+
+  #time .zone {
+    top: -12px;
   }
 
   .pray li {
@@ -218,7 +223,7 @@ select {
   }
 
   .date {
-    padding: 1em;
+    padding: 1em 1em 2em;
     background: rgba(0, 0, 0, .3);
   }
 
