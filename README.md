@@ -8,6 +8,7 @@ This project combines reliable sources and algorithms to deliver Islamic prayer 
 
 - Calculation of prayer times based on location and timezone.
 - Support for querying specific locations and timezones using parameters.
+- Customizable background color.
 
 ## Usage
 
@@ -19,14 +20,16 @@ The API supports the following query parameters:
   - `8` = WITA (Waktu Indonesia Tengah), UTC+8  
   - `9` = WIT (Waktu Indonesia Timur), UTC+9  
 - **`loc`**: Specifies the location ID. Location IDs correspond to predefined regions or cities.  
+- **`bg`**: Specifies the background color in hexadecimal format without hash.  
+  e.g., `212121` for gray13.  
 
 ### Example
 
 ```
-https://sekedus.github.io/adzaan/?tz=7&loc=83
+https://sekedus.github.io/adzaan/?tz=7&loc=83&bg=212121
 ```
 
-This example retrieves prayer times for Jakarta (location ID `83`) in timezone `UTC+7` WIB.
+This example retrieves prayer times for Jakarta (location ID `83`) in timezone `UTC+7` WIB with a gray13 background (`212121`).
 
 ## Data Sources
 
