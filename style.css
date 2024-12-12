@@ -86,7 +86,18 @@ select {
 
 #time {
   display: inline-block;
+  position: relative;
+}
+
+#time .clock {
   font-size: 3.6em;
+}
+
+#time .zone {
+  font-size: 1.3em;
+  position: absolute;
+  top: -10px;
+  right: .2em;
 }
 
 .location {
@@ -199,8 +210,12 @@ select {
   }
 
   #time, .location {
-    display: block;
-    margin: 20px 0 0;
+    display: inherit;
+    margin: 20px auto 0;
+  }
+
+  #time .zone {
+    top: -12px;
   }
 
   .pray {

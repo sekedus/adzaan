@@ -594,7 +594,7 @@ const genSelectOption = function(id, data) {
 };
 
 function nextTime(prayerTimes) {
-  const now = new Date();
+  const now = currentTime(loc_tz);
   const date = toLocalISOString(now).split('T')[0]; // Get today's date in YYYY-MM-DD format
 
   // Convert prayer times to an array with names and Date objects.
@@ -714,11 +714,11 @@ function currentTime(offset = 0) {
 function displayTime(el) {
   const time = currentTime(loc_tz);
   el.setAttribute('data-currentTime', time.getTime());
-  el.innerHTML = formatTime(time);
+  el.querySelector('.clock').innerHTML = formatTime(time);
   timer_clock = setTimeout(() => { displayTime(el) }, 1000);
 
   if (today.toLocaleDateString() != time.toLocaleDateString()) {
-    today = new Date();
+    today = time;
     updateDate();
   }
 }
@@ -728,7 +728,8 @@ function updateClock() {
   t_el.style.opacity = null;
 
   const timezoneLabel = loc_tz < 0 ? loc_tz : '+' + loc_tz;
-  t_el.setAttribute('title', `Zona Waktu: GMT${timezoneLabel} ${time_ID[loc_tz]}`);
+  t_el.setAttribute('title', `Zona Waktu: ${time_ID[loc_tz]} UTC${timezoneLabel}`);
+  t_el.querySelector('.zone').innerHTML = time_ID[loc_tz];
 
   clearTimeout(timer_clock);
   displayTime(t_el);
@@ -755,7 +756,6 @@ function updateDate() {
 
 
 // Init
-let today = new Date();
 const prayerTimes = new PrayTimes();
 const time_ID = {
   7: "WIB",
@@ -776,6 +776,7 @@ let timer_clock, timer_remain, next_prayer;
 let loc_id = localStorage.getItem('loc-id') || 29; // Jakarta Pusat
 if (getParam('loc')) loc_id = getParam('loc')[0];
 let loc_tz = getData(loc_data).tz;
+let today = currentTime(loc_tz);
 
 l_city.innerHTML = genSelectOption(loc_id, loc_data);
 l_name.innerHTML = l_city.querySelector('option:checked').textContent;
@@ -792,6 +793,7 @@ l_el.addEventListener('click', function(e){
 l_city.addEventListener('change', function(e){
   loc_id = e.target.value;
   loc_tz = getData(loc_data).tz;
+  today = currentTime(loc_tz);
   localStorage.setItem('loc-id', loc_id);
 
   if (e.type == 'change') {
