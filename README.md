@@ -6,42 +6,47 @@ This project combines reliable sources and algorithms to deliver Islamic prayer 
 
 ## Features
 
-- Calculation of prayer times based on location and timezone.
-- Support for querying specific locations and timezones using parameters.
+- Calculation of prayer times based on location.
+- Support for querying specific locations using parameters.
 - Customizable background color.
 
 ## Usage
 
 The API supports the following query parameters:
 
-- **`tz`**: Specifies the [Indonesia timezone](https://en.wikipedia.org/wiki/Time_in_Indonesia) offset in hours from UTC.  
-  Available values are:  
-  - `7` = WIB (Waktu Indonesia Barat), UTC+7  
-  - `8` = WITA (Waktu Indonesia Tengah), UTC+8  
-  - `9` = WIT (Waktu Indonesia Timur), UTC+9  
 - **`loc`**: Specifies the location ID. Location IDs correspond to predefined regions or cities.  
 - **`bg`**: Specifies the background color in hexadecimal format without hash.  
-  e.g., `212121` for gray13.  
+  e.g., `137333` for green.  
 
 ### Example
 
 ```
-https://sekedus.github.io/adzaan/?tz=7&loc=83&bg=212121
+https://sekedus.github.io/adzaan/?loc=29&bg=137333
 ```
 
-This example retrieves prayer times for Jakarta (location ID `83`) in timezone `UTC+7` WIB with a gray13 background (`212121`).
+This example retrieves prayer times for Jakarta (location ID `29`) with a green background (`137333`).
 
 ## Data Sources
 
 The prayer times and calendar calculations in this project are based on data from the following sources:
 
+### Pray Times
+
 - [Pray Times v2.3](http://praytimes.org/)
+- [Prayer Times Library (PHP)](https://github.com/islamic-network/prayer-times)
+
+### Hijri Calendar
+
 - [ELIPSKI Kemenag RI](https://simbi.kemenag.go.id/eliterasi/pencarian/kalender)
 - [Al-Habib Islamic Calendar](https://www.al-habib.info/kalender-islam/kalender-islam-global.htm)
 - [Umm al-Qura Calendar](https://www.ummulqura.org.sa/Index.aspx)
 - [Moment Hijri](https://github.com/xsoh/moment-hijri)
-- [Adzan!](https://github.com/cahyadsn/adzan)
-- [Prayer Times Library (PHP)](https://github.com/islamic-network/prayer-times)
+
+### Indonesia Cities
+
+- [Daftar kota di Indonesia](https://id.wikipedia.org/wiki/Daftar_kota_di_Indonesia_menurut_provinsi)
+- [Kode Wilayah Indonesia](https://github.com/cahyadsn/wilayah)
+- [List of Cities and Towns in Indonesia](https://www.back4app.com/database/back4app/indonesia-cities-database)
 
 ## License
 

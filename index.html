@@ -7,26 +7,35 @@
     <link rel="stylesheet" href="./style.css">
   </head>
   <body>
+    <script type="text/javascript">
+      // Get URL Variables https://codepen.io/sekedus/pen/jOpNmja
+      function getParam(param, url) {
+        var result = [];
+        var loc = url ? new URL(url) : window.location;
+        var query = loc.search.substring(1).split('&');
+        for (var i = 0; i < query.length; i++) {
+          var pair = query[i].split('=');
+          if (pair[0] == param) {
+            if (pair.length == 1) {
+              return true;
+            } else {
+              result.push(decodeURIComponent(pair[1].replace(/\+/g, ' ')));
+            }
+          }
+        }
+        return result.length == 0 ? false : result;
+      }
+
+      if (getParam('bg')) document.body.style.backgroundColor = '#' + getParam('bg')[0];
+      document.body.classList.add('js');
+    </script>
+
     <div id="wrap">
       <div class="container">
         <h1 class="title">Waktu Shalat</h1>
 
         <div id="select">
-          <div id="time" class="select_click">
-            <div class="box">
-              <select class="timezone pointer">
-                <option value="7">WIB (UTC+7)</option>
-                <option value="8">WITA (UTC+8)</option>
-                <option value="9">WIT (UTC+9)</option>
-              </select>
-
-              <div class="clock selected">
-                <span class="local">00:00:00</span>
-                <span class="zone"></span>
-                <span class="arrow"></span>
-              </div>
-            </div>
-          </div>
+          <div id="time">00:00:00</div>
 
           <div class="location select_click" title="Klik untuk ganti lokasi">
             <div class="box">
@@ -36,32 +45,11 @@
           </div>
         </div>
 
-        <ul class="pray">
-          <li>
-            <div class="name">Subuh</div>
-            <div class="time">-</div>
-          </li>
-          <li>
-            <div class="name">Zhuhur</div>
-            <div class="time">-</div>
-          </li>
-          <li>
-            <div class="name">Ashar</div>
-            <div class="time">-</div>
-          </li>
-          <li>
-            <div class="name">Maghrib</div>
-            <div class="time">-</div>
-          </li>
-          <li>
-            <div class="name">Isya'</div>
-            <div class="time">-</div>
-          </li>
-        </ul>
+        <ul class="pray"></ul>
 
         <div class="date">
           <span class="gregorian">-</span>
-          <span class="hijri"></span>
+          <span class="hijri">-</span>
         </div>
 
       </div>
