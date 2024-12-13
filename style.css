@@ -2,7 +2,6 @@
   margin: 0;
   padding: 0;
   outline: 0;
-  -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
 
@@ -129,6 +128,10 @@ select {
   width: 20%;
   float: left;
   padding: 1em 0 .5em;
+}
+
+.pray .current {
+  animation: current-prayer 1s ease infinite alternate;
 }
 
 .pray .next {
@@ -284,5 +287,15 @@ select {
     padding: 5px 0 0;
     border-width: 0;
     border-top-width: 1px;
+  }
+}
+
+@keyframes current-prayer {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
   }
 }

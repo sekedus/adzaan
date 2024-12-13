@@ -593,7 +593,7 @@ const genSelectOption = function(id, data) {
   return options;
 };
 
-function nextTime(prayerTimes) {
+function nextPrayer(prayerTimes) {
   const now = currentTime(loc_tz);
   const date = toLocalISOString(now).split('T')[0]; // Get today's date in YYYY-MM-DD format
 
@@ -611,15 +611,20 @@ function nextTime(prayerTimes) {
     });
 
   // Find the first prayer time that is later than the current time.
-  let nextPrayer = prayerEntries.find((prayer) => prayer.time > now);
+  let nextTime = prayerEntries.find((prayer) => prayer.time > now);
 
-  if (!nextPrayer) {
+  if (!nextTime) {
     // If no prayer is left today, wrap around to the first prayer of the next day.
-    nextPrayer = { ...prayerEntries[0] };
-    nextPrayer.time.setDate(nextPrayer.time.getDate() + 1);
+    nextTime = { ...prayerEntries[0] };
+    nextTime.time.setDate(nextTime.time.getDate() + 1);
   }
 
-  return nextPrayer;
+  return nextTime;
+}
+
+function currentPrayer(el) {
+  el.parentElement.classList.add('current');
+  setTimeout(() => { p_el.querySelector('.current').classList.remove('current'); }, 60000);
 }
 
 function displayRemain(el) {
@@ -629,12 +634,13 @@ function displayRemain(el) {
     el.innerHTML = formatTime(r_time, true);
     timer_remain = setTimeout(() => { displayRemain(el) }, 1000);
   } else {
+    currentPrayer(el);
     updateTimeTable();
   }
 }
 
 function remainTime(times) {
-  next_prayer = nextTime(times);
+  next_prayer = nextPrayer(times);
   let next, remain = p_el.querySelector('.remain');
   if (remain) {
     next = remain.parentElement;
@@ -718,7 +724,7 @@ function displayTime(el) {
   timer_clock = setTimeout(() => { displayTime(el) }, 1000);
 
   if (today.toLocaleDateString() != time.toLocaleDateString()) {
-    today = time;
+    today = new Date();
     updateDate();
   }
 }
@@ -756,6 +762,7 @@ function updateDate() {
 
 
 // Init
+let today = new Date();
 const prayerTimes = new PrayTimes();
 const time_ID = {
   7: "WIB",
@@ -776,7 +783,6 @@ let timer_clock, timer_remain, next_prayer;
 let loc_id = localStorage.getItem('loc-id') || 29; // Jakarta Pusat
 if (getParam('loc')) loc_id = getParam('loc')[0];
 let loc_tz = getData(loc_data).tz;
-let today = currentTime(loc_tz);
 
 l_city.innerHTML = genSelectOption(loc_id, loc_data);
 l_name.innerHTML = l_city.querySelector('option:checked').textContent;
@@ -793,7 +799,6 @@ l_el.addEventListener('click', function(e){
 l_city.addEventListener('change', function(e){
   loc_id = e.target.value;
   loc_tz = getData(loc_data).tz;
-  today = currentTime(loc_tz);
   localStorage.setItem('loc-id', loc_id);
 
   if (e.type == 'change') {

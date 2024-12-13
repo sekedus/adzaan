@@ -48,6 +48,10 @@ The prayer times and calendar calculations in this project are based on data fro
 - [Kode Wilayah Indonesia](https://github.com/cahyadsn/wilayah)
 - [List of Cities and Towns in Indonesia](https://www.back4app.com/database/back4app/indonesia-cities-database)
 
+### Images
+
+- [Background pattern by Freepik](https://www.freepik.com/free-vector/flat-arabic-pattern-background_15365516.htm)
+
 ## License
 
 This project is licensed under a [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/). See the [LICENSE](https://github.com/sekedus/adzaan/blob/main/LICENSE-CC-BY-NC-SA) file for more details.
