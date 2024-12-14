@@ -1,6 +1,6 @@
 # Adzaan - Jadwal Shalat
 
-**Adzaan** is a comprehensive tool to provide prayer times.
+[<img src="https://sekedus.github.io/adzaan/images/icon.png" alt="Adzaan" width="16"/>](https://github.com/sekedus/adzaan) **Adzaan** is a comprehensive tool to provide prayer times.
 
 This project combines reliable sources and algorithms to deliver Islamic prayer schedules for various locations in Indonesia.
 

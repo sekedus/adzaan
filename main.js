@@ -622,19 +622,27 @@ function nextPrayer(prayerTimes) {
   return nextTime;
 }
 
-function currentPrayer(el) {
-  el.parentElement.classList.add('current');
-  setTimeout(() => { p_el.querySelector('.current').classList.remove('current'); }, 60000);
-}
-
 function displayRemain(el) {
   const time = currentTime(loc_tz);
   const r_time = Math.floor((next_prayer.time - time) / 1000);
   if (r_time > 0) {
     el.innerHTML = formatTime(r_time, true);
     timer_remain = setTimeout(() => { displayRemain(el) }, 1000);
+
+    if (current_prayer) {
+      const afterOneMinute = new Date(current_prayer.time.getTime() + 60000);
+      if (time >= afterOneMinute) {
+        current_prayer.el.classList.remove('current');
+        current_prayer = null;
+      }
+    }
   } else {
-    currentPrayer(el);
+    el.parentElement.classList.add('current');
+    current_prayer = {
+      el: el.parentElement,
+      time: next_prayer.time
+    };
+
     updateTimeTable();
   }
 }
@@ -779,7 +787,7 @@ const d_el = document.querySelector('.date');
 const d_gregorian = d_el.querySelector('.gregorian');
 const d_hijri = d_el.querySelector('.hijri');
 
-let timer_clock, timer_remain, next_prayer;
+let timer_clock, timer_current, timer_remain, current_prayer, next_prayer;
 let loc_id = localStorage.getItem('loc-id') || 29; // Jakarta Pusat
 if (getParam('loc')) loc_id = getParam('loc')[0];
 let loc_tz = getData(loc_data).tz;
@@ -802,6 +810,7 @@ l_city.addEventListener('change', function(e){
   localStorage.setItem('loc-id', loc_id);
 
   if (e.type == 'change') {
+    clearTimeout(timer_current);
     updateTimeTable();
     updateClock();
     const selected = this.options[this.selectedIndex].text;
